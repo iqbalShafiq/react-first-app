@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { theme } from "../../store";
 
 function Index() {
 	const [users, setUsers] = useState([]);
+	const [currentTheme, setCurrentTheme] = useRecoilState(theme);
+	const defaultTheme = currentTheme == "dark" ? "bg-dark text-white" : "bg-light text-dark";
 
 	const getUsers = async () => {
 		try {
@@ -23,7 +27,7 @@ function Index() {
 			{users.map((user, index) => {
 				return (
 					<div className="col-md-4 mb-3" key={index}>
-						<div className="card">
+						<div className={`card ${defaultTheme}`}>
 							<div className="card-header">{user.name}</div>
 							<div className="card-body">
 								<div>

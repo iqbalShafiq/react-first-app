@@ -1,16 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<RecoilRoot>
+			<Suspense fallback="">
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</Suspense>
+		</RecoilRoot>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
